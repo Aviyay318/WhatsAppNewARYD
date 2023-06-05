@@ -99,11 +99,6 @@ public class SendMessage extends MainPanel{
 
         }
 
-//        private void splitPhoneNumbers() {
-//            String[] phoneNumbers = this.phoneNumbersField.getText().split(",");
-//            for (int i = 0; i < phoneNumbers.length; i++) {
-//                verification(phoneNumbers[i]);
-//            }}
     private void addMessageLabel() {
         this.messageLabel = new JLabel("Enter Your Message");
         this.messageLabel.setFont(new Font("arial", Font.BOLD, 20));

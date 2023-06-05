@@ -68,7 +68,6 @@ public class WebDriver extends ChromeDriver {
             boolean read = false;
             boolean sent = false;
             while (!read) {
-                List<WebElement> list = chromeDriver.findElements(By.cssSelector("span[data-icon='msg-dblcheck']"));
                 try {
                     String lastMessage = getLast(chromeDriver);
                     if (lastMessage == null) {
@@ -93,7 +92,7 @@ public class WebDriver extends ChromeDriver {
     }
     public String getLast(ChromeDriver chromeDriver) {
         String lastMessage = null;
-        List<WebElement> list = null;
+        List<WebElement> list;
         try {
             List<WebElement>  divElements = chromeDriver.findElements(By.cssSelector("div[role='row']"));
             WebElement lastDivElement = divElements.get(divElements.size() - 1);
@@ -108,15 +107,17 @@ public class WebDriver extends ChromeDriver {
 
 
     public String returnReceivedMessage(){
-        String [] array = null;
+        String [] array;
+        String result = "";
         while (true) {
             WebElement check = this.findElement(By.xpath("//*[@id=\"main\"]/div[2]/div/div[2]/div[3]"));
             if (check!=null){
                 array =  check.getText().split("\n");
                 System.out.println(Arrays.toString(array));
                 System.out.println(array[array.length-2]);
+                result=array[array.length-2];
                 break;
             }
         }
-        return array[array.length-2];}
+        return result;}
 }
