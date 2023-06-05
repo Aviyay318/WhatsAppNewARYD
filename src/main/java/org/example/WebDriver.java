@@ -124,5 +124,6 @@ public class WebDriver extends ChromeDriver {
                 break;
             }
         }
-        return result;}
+        return result;
+    }
 }
