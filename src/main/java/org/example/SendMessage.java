@@ -88,16 +88,15 @@ public class SendMessage extends MainPanel{
         return isAllDigits;
     }
     private void sendMessage() {
-         if (verification()){
-           driver.redirectPhoneNumber(this.phoneNumber);
-           driver.sendMessage(this.messageField.getText());
-             addReplyFields();
-            } else {
-                this.phoneNumbersField.setText("");
-                JOptionPane.showMessageDialog(this.dialogMessage, "wrong number");
-            }
-
+        if (verification()){
+            driver.redirectPhoneNumber(this.phoneNumber);
+            driver.sendMessage(this.messageField.getText());
+            addReplyFields();
+        } else {
+            this.phoneNumbersField.setText("");
+            JOptionPane.showMessageDialog(this.dialogMessage, "wrong number");
         }
+    }
 
     private void addMessageLabel() {
         this.messageLabel = new JLabel("Enter Your Message");
@@ -147,16 +146,19 @@ public class SendMessage extends MainPanel{
     }
 
     private void addReplyFields() {
+        this.replyField = new JTextArea();
+        this.replyField.setFont(new Font("arial", Font.BOLD, 20));
+        this.replyField.setBounds(this.phoneNumbersField.getX(),this.getHeight()-100,600,100);
+        this.add(this.replyField);
+        this.replyField.setLineWrap(true);
+        this.replyField.setWrapStyleWord(true);
+        this.replyField.setVisible(false);
         new Thread(()->{
             while (true){
                 if(driver.getLast(driver)!=null){
-                    this.replyField = new JTextArea(driver.returnReceivedMessage());
-                    this.replyField.setFont(new Font("arial", Font.BOLD, 20));
-                    this.replyField.setBounds(0, 0,600,30);
-                    this.add(this.replyField);
-                    this.replyField.setLineWrap(true);
-                    this.replyField.setWrapStyleWord(true);
+                    this.replyField.setText(driver.returnReceivedMessage());
                     this.replyField.setVisible(true);
+                    break;
                 }
             }
         }).start();

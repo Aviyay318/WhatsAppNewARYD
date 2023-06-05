@@ -16,7 +16,7 @@ public class WebDriver extends ChromeDriver {
     private String messageText;
     private String phoneNumber;
     private String status;
-
+    private WebElement phone;
     public WebDriver(){
         System.setProperty("webdriver.openqa.driver", "src/drivers/chromedriver.exe");
         this.dialogMessage = new JLabel();
@@ -104,14 +104,19 @@ public class WebDriver extends ChromeDriver {
         return lastMessage;
     }
 
-
+    public void setPhone() {
+        this.phone = this.findElement(By.className("CzM4m"));
+        System.out.println(this.phone.getAttribute("data-id"));
+    }
 
     public String returnReceivedMessage(){
         String [] array;
         String result = "";
         while (true) {
             WebElement check = this.findElement(By.xpath("//*[@id=\"main\"]/div[2]/div/div[2]/div[3]"));
-            if (check!=null){
+            setPhone();
+            System.out.println(this.phone.getAttribute("data-id").contains(this.phoneNumber));
+            if (check!=null && this.phone.getAttribute("data-id").contains("false")){
                 array =  check.getText().split("\n");
                 System.out.println(Arrays.toString(array));
                 System.out.println(array[array.length-2]);
