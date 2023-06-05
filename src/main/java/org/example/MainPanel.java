@@ -29,9 +29,9 @@ public class MainPanel extends JPanel {
             e.printStackTrace();
         }
     }
-public void initializeWebDriver(){
+    public void initializeWebDriver(){
         driver = new WebDriver();
-}
+    }
     public void paintComponent(Graphics graphics){
         super.paintComponent(graphics);
         graphics.drawImage(this.backGround,0,0,Constants.WIDTH,Constants.HEIGHT,null);

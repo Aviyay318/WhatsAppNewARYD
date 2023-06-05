@@ -78,6 +78,7 @@ public class SendMessage extends MainPanel{
         }
         return isValid;
     }
+
     private boolean isAllDigits(){
         boolean isAllDigits = true;
         for (int i = 0; i < this.phoneNumber.length(); i++) {
@@ -87,6 +88,7 @@ public class SendMessage extends MainPanel{
         }
         return isAllDigits;
     }
+
     private void sendMessage() {
         if (verification()){
             if (!this.messageField.getText().equals("")){
@@ -156,7 +158,7 @@ public class SendMessage extends MainPanel{
     private void addReplyFields() {
         this.replyField = new JTextArea();
         this.replyField.setFont(new Font("arial", Font.BOLD, 20));
-        this.replyField.setBounds(this.phoneNumbersField.getX(),this.getHeight()-100,600,100);
+        this.replyField.setBounds(this.phoneNumbersField.getX(),this.getHeight()-100,600,50);
         this.add(this.replyField);
         this.replyField.setLineWrap(true);
         this.replyField.setWrapStyleWord(true);

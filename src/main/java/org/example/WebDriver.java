@@ -115,7 +115,7 @@ public class WebDriver extends ChromeDriver {
         while (true) {
             WebElement check = this.findElement(By.xpath("//*[@id=\"main\"]/div[2]/div/div[2]/div[3]"));
             setPhone();
-            System.out.println(this.phone.getAttribute("data-id").contains(this.phoneNumber));
+            System.out.println(this.phone.getAttribute("data-id").contains("false"));
             if (check!=null && this.phone.getAttribute("data-id").contains("false")){
                 array =  check.getText().split("\n");
                 System.out.println(Arrays.toString(array));
