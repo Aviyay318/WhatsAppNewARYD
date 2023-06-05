@@ -26,7 +26,7 @@ public class SendMessage extends MainPanel{
         addMessageLabel();
         addSendButton();
         addStatus();
-
+        addReplyFields();
     }
 
     private void addSendButton() {
@@ -89,13 +89,21 @@ public class SendMessage extends MainPanel{
     }
     private void sendMessage() {
         if (verification()){
-            driver.redirectPhoneNumber(this.phoneNumber);
-            driver.sendMessage(this.messageField.getText());
-            addReplyFields();
+            if (!this.messageField.getText().equals("")){
+                driver.redirectPhoneNumber(this.phoneNumber);
+                driver.sendMessage(this.messageField.getText());
+                applyReplyField();
+            }else {
+                showMessage("enter a text");
+            }
         } else {
             this.phoneNumbersField.setText("");
-            JOptionPane.showMessageDialog(this.dialogMessage, "wrong number");
+            showMessage("enter phoneNumber begin in 05 \n only digits");
         }
+    }
+    private void showMessage(String popMessage){
+        JOptionPane.showMessageDialog(this.dialogMessage,popMessage );
+
     }
 
     private void addMessageLabel() {
@@ -153,6 +161,9 @@ public class SendMessage extends MainPanel{
         this.replyField.setLineWrap(true);
         this.replyField.setWrapStyleWord(true);
         this.replyField.setVisible(false);
+
+    }
+    private void applyReplyField(){
         new Thread(()->{
             while (true){
                 if(driver.getLast(driver)!=null){
