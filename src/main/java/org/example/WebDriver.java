@@ -104,12 +104,12 @@ public class WebDriver extends ChromeDriver {
         return lastMessage;
     }
 
-    public void setPhone() {
+    public synchronized void setPhone() {
         this.phone = this.findElement(By.className("CzM4m"));
         System.out.println(this.phone.getAttribute("data-id"));
     }
 
-    public String returnReceivedMessage(){
+    public synchronized String returnReceivedMessage(){
         String [] array;
         String result = "";
         while (true) {
