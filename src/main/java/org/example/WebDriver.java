@@ -65,20 +65,20 @@ public class WebDriver extends ChromeDriver {
 
     public void deliveredMessage(ChromeDriver chromeDriver) {
         new Thread(() -> {
-            boolean read = false;
-            boolean sent = false;
-            while (!read) {
+            boolean isRead = false;
+            boolean isDelivered = false;
+            while (!isRead) {
                 try {
                     String lastMessage = getLast(chromeDriver);
                     if (lastMessage == null) {
                         this.status = "sent";
                     } else {
-                        if (lastMessage.contains("נמסרה") || lastMessage.contains("Delivered") && !sent) {
+                        if (lastMessage.contains("נמסרה") || lastMessage.contains("Delivered") && !isDelivered) {
                             this.status = "delivered";
-                            sent = true;
+                            isDelivered = true;
                         } else if (lastMessage.contains("נקראה")|| lastMessage.contains("Read")) {
                             this.status = "read";
-                            read = true;
+                            isRead = true;
                         }
                     }
                 } catch (Exception e) {
