@@ -53,11 +53,15 @@ public class SendMessage extends MainPanel{
     }
 
     private void addStatus() {
+        JLabel messageStatus = new JLabel("Message Status");
+        messageStatus.setFont(new Font("Arial",Font.BOLD,30));
+        messageStatus.setBounds(this.send.getX(),this.send.getY()+180,this.send.getWidth()+500,this.send.getHeight());
+        this.add(messageStatus);
         this.status = new JLabel();
         this.status.setFont(new Font("Arial",Font.BOLD,30));
         this.setBackground(new Color(47,222,81));
         this.setForeground(new Color(255,255,255));
-        this.status.setBounds(this.send.getX(),this.send.getY()+180,this.send.getWidth()+500,this.send.getHeight());
+        this.status.setBounds(this.send.getX(),messageStatus.getY()+messageStatus.getHeight()+10,this.send.getWidth()+500,this.send.getHeight());
         this.add(this.status);
     }
 
